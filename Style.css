@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Judul */
+.judul {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1f3c88;
+  font-size: 28px;
+}
+
+/* Kriteria */
+.kriteria {
+  margin-bottom: 35px;
+}
+
+.kriteria h3 {
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f3c88;
+}
+
+/* Baris input */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+label {
+  min-width: 110px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 300px;
+  padding: 8px 10px;
+  border: 1px solid #777;
+  border-radius: 4px;
+}
+
+/* Button */
+.btn {
+  padding: 9px 16px;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.btn-save {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input[type="text"],
+  .btn {
+    width: 100%;
+  }
+}
+.sub-container .form-row {
+  margin-bottom: 10px;
+}
+@media print {
+  body {
+    /* Memaksa warna latar belakang muncul di Chrome/Safari/Edge */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: #0f172a !important; /* Warna Navy Dark Anda */
+  }
+
+  /* Sembunyikan tombol saat mencetak agar laporan terlihat rapi */
+  .flex,
+  button,
+  a {
+    display: none !important;
+  }
+
+  .glass-card {
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+  }
+}

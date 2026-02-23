@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hasil</title>
+  </head>
+  <body>
+    <h2>HASIL RANKING</h2>
+    <ul id="ranking"></ul>
+
+    <script>
+      const hasil = JSON.parse(localStorage.getItem("hasil"));
+      hasil.sort((a, b) => b.nilai - a.nilai);
+
+      const ul = document.getElementById("ranking");
+      hasil.forEach((h, i) => {
+        ul.innerHTML += `<li>${i + 1}. ${h.nama} (${h.nilai.toFixed(3)})</li>`;
+      });
+    </script>
+  </body>
+</html>

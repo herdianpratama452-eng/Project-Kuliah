@@ -1,0 +1,37 @@
+body {
+  font-family: "Times New Roman", serif;
+}
+
+.judul {
+  text-align: center;
+  font-weight: bold;
+}
+
+.tabel {
+  margin: auto;
+  border-collapse: collapse;
+  width: 650px;
+}
+
+.tabel th,
+.tabel td {
+  border: 1px solid black;
+  padding: 6px;
+  text-align: center;
+}
+
+.tabel td:first-child {
+  text-align: left;
+}
+
+.jumlah td {
+  font-weight: bold;
+}
+
+.proses td {
+  text-align: left;
+}
+
+.akhir td {
+  font-weight: bold;
+}
