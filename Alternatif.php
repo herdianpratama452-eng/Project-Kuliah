@@ -10,7 +10,7 @@ if (isset($_GET['delete'])) {
     if (isset($dataAlternatif[$id])) {
         unset($dataAlternatif[$id]);
         $_SESSION['dataAlternatif'] = array_values($dataAlternatif); // reindex
-        header("Location: alternatif.php");
+        header("Location: Alternatif.php");
         exit;
     }
 }
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $_SESSION['dataAlternatif'] = $dataAlternatif;
-    header("Location: alternatif.php");
+    header("Location: Alternatif.php");
     exit;
 }
 ?>
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($editData): ?>
             <input type="hidden" name="edit_index" value="<?= $editIndex ?>">
             <button type="submit" class="submit">💾 Update Alternatif</button>
-            <a href="alternatif.php"><button type="button">❌ Batal</button></a>
+            <a href="Alternatif.php"><button type="button">❌ Batal</button></a>
         <?php else: ?>
             <button type="submit" class="submit">💾 Simpan Alternatif</button>
         <?php endif; ?>
@@ -225,8 +225,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td><?= htmlspecialchars($alt['pengeluaran']) ?></td>
                             <td><?= htmlspecialchars($alt['pendapatan']) ?></td>
                             <td>
-                                <a href="alternatif.php?edit=<?= $i ?>"><button class="edit">Edit</button></a>
-                                <a href="alternatif.php?delete=<?= $i ?>" onclick="return confirm('Yakin ingin hapus?')"><button class="delete">Hapus</button></a>
+                                <a href="Alternatif.php?edit=<?= $i ?>"><button class="edit">Edit</button></a>
+                                <a href="Alternatif.php?delete=<?= $i ?>" onclick="return confirm('Yakin ingin hapus?')"><button class="delete">Hapus</button></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
