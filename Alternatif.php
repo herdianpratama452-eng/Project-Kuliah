@@ -104,6 +104,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-top: 20px;
         }
 
+        button.next {
+            background-color: #17a2b8;
+            padding: 10px 18px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button.next:hover {
+            background-color: #17a2b8;
+            transform: translateY(-2px);
+        }
+
+        button.next:active {
+            transform: translateY(1px);
+            background-color: #17a2b8;
+        }
+
+        button.next:focus {
+            outline: none;
+            ring: 2px solid #17a2b8;
+        }
+
         form {
             max-width: 400px;
             margin: auto;
@@ -218,7 +242,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
 
-    <p style="text-align:center;"><a href="tabel_kriteria.php">⬅ Kembali ke Kriteria</a></p>
+    <div style="text-align:center;">
+        <a href="tabel_kriteria.php">⬅ Kembali ke Kriteria</a>
+    </div>
 
 </body>
 

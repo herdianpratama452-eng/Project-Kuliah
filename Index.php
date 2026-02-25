@@ -87,6 +87,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border: none;
         }
 
+        .btn-save {
+            background-color: #28a745;
+            padding: 10px 18px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-save:active {
+            transform: translateY(1px);
+            background-color: #1e7e34;
+        }
+
+        .btn-save:focus {
+            outline: none;
+            ring: 2px solid #94d3a2;
+        }
+
         .sub-container input {
             margin-bottom: 5px;
         }
@@ -148,4 +173,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="button" class="btn-add" onclick="tambahKriteria()">+ Tambah Kriteria</button>
 
             <br><br>
-            <button type="submit" class="btn-save">💾 Simpan Data</button
+            <div style="text-align:right; margin-top:10px;">
+                <a href="table_kriteria.php"><button class="btn-save">💾 Simpan Data</button></a>
+            </div>

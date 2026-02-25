@@ -80,6 +80,8 @@ $_SESSION['prioritas'] = $prioritas;
             text-decoration: none;
             border-radius: 6px;
             margin: 5px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-blue {
@@ -91,11 +93,16 @@ $_SESSION['prioritas'] = $prioritas;
         }
 
         .btn-green {
-            background: #28a745;
+            background: #17a2b8;
+            padding: 10px 18px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
         .btn-green:hover {
-            background: #1d7d32;
+            background: #17a2b8;
         }
     </style>
 </head>
@@ -135,7 +142,7 @@ $_SESSION['prioritas'] = $prioritas;
     <p style="text-align:center;">
 
         <!-- Tombol kembali -->
-        <a href="prioritas_kriteria.php" class="btn btn-blue">⬅ Kembali</a>
+        <a href="matrik_nilai_kriteria.php" class="btn btn-blue">⬅ Kembali</a>
 
         <!-- Tombol menuju konsistensi -->
         <a href="Perhitungan rasio konsistensi.php" class="btn btn-green">➡ Lanjut ke Perhitungan Rasio Konsistensi</a>

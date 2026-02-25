@@ -61,6 +61,36 @@ foreach ($skor as $index => $nilai) {
         h2 {
             text-align: center;
         }
+
+        button.home {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button.home:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        button.home:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #1e7e34;
+        }
+
+        button.home:focus {
+            outline: none;
+            ring: 2px solid #94d3a2;
+        }
     </style>
 </head>
 
@@ -89,3 +119,6 @@ foreach ($skor as $index => $nilai) {
 </body>
 
 </html>
+<div style="text-align:center; margin-top:10px;">
+    <a href="index.php"><button class="home">🏠Back to Home</button></a>
+</div>

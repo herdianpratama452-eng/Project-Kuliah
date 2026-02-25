@@ -57,6 +57,37 @@ if (!empty($matrikPrev)) {
         input[type=number] {
             width: 60px;
         }
+
+        button[type=submit] {
+            background: #28a745;
+            color: white;
+            border: none;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            padding: 10px 18px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(1px);
+            background-color: #1e7e34;
+        }
+
+        button[type="submit"]:focus {
+            outline: none;
+            ring: 2px solid #94d3a2;
+        }
     </style>
 </head>
 

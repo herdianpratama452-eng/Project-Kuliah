@@ -59,6 +59,35 @@ $_SESSION['matrikNorm'] = $matrikNorm;
         small {
             color: #555;
         }
+
+        button.next {
+            background-color: #17a2b8;
+            margin-top: 20px;
+        }
+
+        button.next {
+            background-color: #17a2b8;
+            padding: 10px 18px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button.next:hover {
+            background-color: #17a2b8;
+            transform: translateY(-2px);
+        }
+
+        button.next:active {
+            transform: translateY(1px);
+            background-color: #17a2b8;
+        }
+
+        button.next:focus {
+            outline: none;
+            ring: 2px solid #17a2b8;
+        }
     </style>
 </head>
 
@@ -85,9 +114,9 @@ $_SESSION['matrikNorm'] = $matrikNorm;
         <?php endfor; ?>
     </table>
 
-    <p style="text-align:center; margin-top:10px;">
-        <a href="proses_prioritas_kriteria.php">➡ Lihat Bobot Prioritas Kriteria</a>
-    </p>
+    <div style="text-align:center; margin-top:10px;">
+        <a href="proses_prioritas_kriteria.php"><button class="next">➡ Lihat Bobot Prioritas Kriteria</button></a>
+    </div>
 </body>
 
 </html>

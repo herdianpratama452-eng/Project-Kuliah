@@ -152,6 +152,6 @@ $status = ($CR < 0.1 ? "Konsisten ✔" : "Tidak Konsisten ❌");
     <br>
     <p style="text-align:center;">
         <a href="Perhitungan skor setiap alternatif.php"
-            style="padding:10px 15px; background:green; color:white; text-decoration:none;">
+            style="padding:10px 15px; background:#17a2b8; color:white; text-decoration:none; transform: translateY(-2px);">
             ➡ Lanjut ke Perhitungan Skor Setiap Alternatif
         </a>
