@@ -1,16 +1,24 @@
-<?php session_start(); $data = $_SESSION['dataKriteria'] ?? []; ?>
+<?php
+session_start();
+
+// Data Kriteria
+$dataKriteria = $_SESSION['dataKriteria'] ?? [];
+?>
 
 <!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Tabel Data Kriteria</title>
+    <title>Tabel Kriteria</title>
     <style>
+      body {
+        font-family: Arial;
+        margin: 20px;
+      }
       table {
         border-collapse: collapse;
         width: 70%;
-        margin: 30px auto;
-        font-family: "Times New Roman";
+        margin: 20px auto;
         text-align: center;
       }
       th,
@@ -18,41 +26,52 @@
         border: 1px solid black;
         padding: 6px;
       }
+      th {
+        background-color: #f2f2f2;
+      }
       caption {
         font-weight: bold;
         margin-bottom: 8px;
+        font-size: 18px;
       }
     </style>
   </head>
   <body>
-    <table>
-      <caption>
-        Tabel 1. Data Kriteria
-      </caption>
-      <thead>
-        <tr>
-          <th>Kriteria</th>
-          <th>Sub Kriteria</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php if (empty($data)) : ?>
-        <tr>
-          <td colspan="2">Data belum tersedia</td>
-        </tr>
-        <?php else: ?> <?php foreach ($data as $item): ?> <?php $subCount =
-        count($item['sub_kriteria']); ?> <?php foreach ($item['sub_kriteria'] as
-        $index => $sub): ?>
-        <tr>
-          <?php if ($index === 0): ?>
-          <td rowspan="<?= $subCount ?>">
-            <?= htmlspecialchars($item['kriteria']) ?>
-          </td>
-          <?php endif; ?>
-          <td><?= htmlspecialchars($sub) ?></td>
-        </tr>
-        <?php endforeach; ?> <?php endforeach; ?> <?php endif; ?>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <!-- Tabel 1: Data Kriteria -->
+      <table>
+        <caption>
+          Tabel 1. Data Kriteria
+        </caption>
+        <thead>
+          <tr>
+            <th>Kriteria</th>
+            <th>Sub Kriteria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if (empty($dataKriteria)): ?>
+          <tr>
+            <td colspan="2">Data Kriteria Belum Ada</td>
+          </tr>
+          <?php else: ?> <?php foreach ($dataKriteria as $item): ?> <?php
+          $subCount = count($item['sub_kriteria']); ?> <?php foreach
+          ($item['sub_kriteria'] as $index => $sub): ?>
+          <tr>
+            <?php if ($index===0): ?>
+            <td rowspan="<?= $subCount ?>">
+              <?= htmlspecialchars($item['kriteria']) ?>
+            </td>
+            <?php endif; ?>
+            <td><?= htmlspecialchars($sub) ?></td>
+          </tr>
+          <?php endforeach; ?> <?php endforeach; ?> <?php endif; ?>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="text-align: center">
+      <a href="alternatif.php">➡ Masuk ke Data Alternatif</a>
+    </p>
   </body>
 </html>

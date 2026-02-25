@@ -44,11 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     if (isset($_POST['edit_index'])) {
+        // update data
         $index = (int)$_POST['edit_index'];
         if (isset($dataAlternatif[$index])) {
             $dataAlternatif[$index] = $newData;
         }
     } else {
+        // tambah data baru
         $dataAlternatif[] = $newData;
     }
 
@@ -63,186 +65,160 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Alternatif - Navy Dark</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Data Alternatif</title>
     <style>
         body {
-            background-color: #0f172a;
-            color: #f1f5f9;
+            font-family: Arial;
+            margin: 20px;
         }
 
-        .form-card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        input[type=text] {
+            width: 90%;
+            padding: 4px;
+            margin: 4px 0;
         }
 
-        input {
-            background-color: #0f172a !important;
-            border-color: #334155 !important;
-            color: #f8fafc !important;
+        button {
+            padding: 6px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            border-radius: 4px;
         }
 
-        input:focus {
-            border-color: #3b82f6 !important;
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+        button.submit {
+            background-color: #28a745;
         }
 
-        .table-alt {
-            background-color: #1e293b;
-            border: 1px solid #334155;
+        button.delete {
+            background-color: #dc3545;
         }
 
-        .row-hover:hover {
-            background-color: rgba(51, 65, 85, 0.4);
+        button.edit {
+            background-color: #007bff;
+        }
+
+        button.next {
+            background-color: #17a2b8;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 6px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        caption {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .table-container {
+            margin-bottom: 50px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
     </style>
 </head>
 
-<body class="py-12 px-4 bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#000000] min-h-screen">
+<body>
 
-    <div class="max-w-6xl mx-auto">
+    <h2><?= $editData ? "Edit Data Alternatif" : "Input Data Alternatif" ?></h2>
 
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-black text-white tracking-tight mb-3">Data Alternatif</h2>
-            <p class="text-slate-400 font-medium italic">Kelola entitas pemohon dalam sistem penilaian.</p>
-        </div>
+    <form method="POST" action="">
+        <input type="text" name="alternatif" placeholder="Nama Alternatif" value="<?= $editData['alternatif'] ?? '' ?>" required><br>
+        <input type="text" name="jaminan" placeholder="Jaminan" value="<?= $editData['jaminan'] ?? '' ?>" required><br>
+        <input type="text" name="lama_pinjam" placeholder="Lama Pinjam" value="<?= $editData['lama_pinjam'] ?? '' ?>" required><br>
+        <input type="text" name="kegunaan" placeholder="Kegunaan" value="<?= $editData['kegunaan'] ?? '' ?>" required><br>
+        <input type="text" name="pengeluaran" placeholder="Pengeluaran" value="<?= $editData['pengeluaran'] ?? '' ?>" required><br>
+        <input type="text" name="pendapatan" placeholder="Pendapatan" value="<?= $editData['pendapatan'] ?? '' ?>" required><br>
+        <?php if ($editData): ?>
+            <input type="hidden" name="edit_index" value="<?= $editIndex ?>">
+            <button type="submit" class="submit">💾 Update Alternatif</button>
+            <a href="alternatif.php"><button type="button">❌ Batal</button></a>
+        <?php else: ?>
+            <button type="submit" class="submit">💾 Simpan Alternatif</button>
+        <?php endif; ?>
+    </form>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-            <div class="lg:col-span-1">
-                <div class="form-card p-8 rounded-3xl sticky top-10">
-                    <h3 class="text-lg font-bold text-white mb-6 flex items-center tracking-wide">
-                        <div class="p-2 rounded-lg mr-3 <?= $editData ? 'bg-orange-500/10 text-orange-400' : 'bg-blue-500/10 text-blue-400' ?>">
-                            <i class="fas <?= $editData ? 'fa-edit' : 'fa-plus-circle' ?>"></i>
-                        </div>
-                        <?= $editData ? "Edit Alternatif" : "Tambah Alternatif" ?>
-                    </h3>
-
-                    <form method="POST" action="" class="space-y-5">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-widest">Nama Alternatif</label>
-                            <input type="text" name="alternatif" placeholder="Budi Santoso" value="<?= $editData['alternatif'] ?? '' ?>" required
-                                class="w-full px-4 py-3 rounded-xl border outline-none transition placeholder-slate-700">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-widest">Jaminan</label>
-                                <input type="text" name="jaminan" placeholder="Sertifikat" value="<?= $editData['jaminan'] ?? '' ?>" required
-                                    class="w-full px-4 py-3 rounded-xl border outline-none transition placeholder-slate-700">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-widest">Tenor</label>
-                                <input type="text" name="lama_pinjam" placeholder="12 Bln" value="<?= $editData['lama_pinjam'] ?? '' ?>" required
-                                    class="w-full px-4 py-3 rounded-xl border outline-none transition placeholder-slate-700">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-widest">Kegunaan</label>
-                            <input type="text" name="kegunaan" placeholder="Modal Usaha" value="<?= $editData['kegunaan'] ?? '' ?>" required
-                                class="w-full px-4 py-3 rounded-xl border outline-none transition placeholder-slate-700">
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-widest">Pengeluaran</label>
-                                <input type="text" name="pengeluaran" placeholder="2jt" value="<?= $editData['pengeluaran'] ?? '' ?>" required
-                                    class="w-full px-4 py-3 rounded-xl border outline-none transition placeholder-slate-700">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-widest">Pendapatan</label>
-                                <input type="text" name="pendapatan" placeholder="5jt" value="<?= $editData['pendapatan'] ?? '' ?>" required
-                                    class="w-full px-4 py-3 rounded-xl border outline-none transition placeholder-slate-700">
-                            </div>
-                        </div>
-
-                        <div class="pt-6 space-y-3">
-                            <?php if ($editData): ?>
-                                <input type="hidden" name="edit_index" value="<?= $editIndex ?>">
-                                <button type="submit" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-4 rounded-2xl transition shadow-lg shadow-orange-900/20 transform active:scale-95">
-                                    <i class="fas fa-save mr-2"></i> Update Data
-                                </button>
-                                <a href="alternatif.php" class="block text-center w-full bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold py-4 rounded-2xl transition">
-                                    Batal
-                                </a>
-                            <?php else: ?>
-                                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-2xl transition shadow-lg shadow-blue-900/40 transform active:scale-95">
-                                    <i class="fas fa-plus mr-2"></i> Simpan Alternatif
-                                </button>
-                            <?php endif; ?>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="lg:col-span-2">
-                <div class="table-alt rounded-3xl shadow-2xl overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead class="bg-slate-900/50 border-b border-slate-700">
-                                <tr>
-                                    <th class="px-6 py-5 text-xs font-black text-slate-400 uppercase tracking-[0.2em] text-center w-16">No</th>
-                                    <th class="px-6 py-5 text-xs font-black text-slate-400 uppercase tracking-[0.2em]">Info Alternatif</th>
-                                    <th class="px-6 py-5 text-xs font-black text-slate-400 uppercase tracking-[0.2em] text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-700/50">
-                                <?php if (empty($dataAlternatif)): ?>
-                                    <tr>
-                                        <td colspan="3" class="px-6 py-20 text-center text-slate-500 italic">
-                                            <i class="fas fa-user-slash text-4xl mb-4 block opacity-20"></i>
-                                            Belum ada data alternatif yang terdaftar.
-                                        </td>
-                                    </tr>
-                                <?php else: ?>
-                                    <?php foreach ($dataAlternatif as $i => $alt): ?>
-                                        <tr class="row-hover transition-colors">
-                                            <td class="px-6 py-6 text-center text-slate-500 font-mono"><?= $i + 1 ?></td>
-                                            <td class="px-6 py-6">
-                                                <div class="font-bold text-white text-lg tracking-tight"><?= htmlspecialchars($alt['alternatif']) ?></div>
-                                                <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2">
-                                                    <span class="text-xs text-slate-400 flex items-center"><i class="fas fa-shield-alt mr-1.5 text-blue-500/50"></i> <?= htmlspecialchars($alt['jaminan']) ?></span>
-                                                    <span class="text-xs text-slate-400 flex items-center"><i class="fas fa-clock mr-1.5 text-blue-500/50"></i> <?= htmlspecialchars($alt['lama_pinjam']) ?></span>
-                                                    <span class="text-xs text-slate-400 flex items-center"><i class="fas fa-wallet mr-1.5 text-emerald-500/50"></i> Rp<?= htmlspecialchars($alt['pendapatan']) ?></span>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-6 text-center">
-                                                <div class="flex justify-center space-x-3">
-                                                    <a href="alternatif.php?edit=<?= $i ?>" class="w-10 h-10 flex items-center justify-center bg-blue-500/10 text-blue-400 rounded-xl hover:bg-blue-500 hover:text-white transition-all shadow-lg shadow-blue-900/10" title="Edit">
-                                                        <i class="fas fa-edit text-sm"></i>
-                                                    </a>
-                                                    <a href="alternatif.php?delete=<?= $i ?>" onclick="return confirm('Hapus data ini?')"
-                                                        class="w-10 h-10 flex items-center justify-center bg-red-500/10 text-red-400 rounded-xl hover:bg-red-500 hover:text-white transition-all shadow-lg shadow-red-900/10" title="Hapus">
-                                                        <i class="fas fa-trash-alt text-sm"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
-                    <a href="tabel_kriteria.php" class="text-slate-400 hover:text-white font-bold transition flex items-center group">
-                        <i class="fas fa-arrow-left mr-3 transition-transform group-hover:-translate-x-1"></i> Kembali ke Kriteria
-                    </a>
-                    <?php if (!empty($dataAlternatif)): ?>
-                        <a href="matrik_kriteria.php" class="px-10 py-4 bg-emerald-600 text-white font-black rounded-2xl hover:bg-emerald-500 shadow-[0_10px_20px_-5px_rgba(16,185,129,0.3)] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center">
-                            Lanjut ke Matriks Kriteria <i class="fas fa-chevron-right ml-3 text-xs"></i>
-                        </a>
-                    <?php endif; ?>
-                </div>
-            </div>
-
-        </div>
+    <div class="table-container">
+        <table>
+            <caption>Data Alternatif</caption>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Alternatif</th>
+                    <th>Jaminan</th>
+                    <th>Lama Pinjam</th>
+                    <th>Kegunaan</th>
+                    <th>Pengeluaran</th>
+                    <th>Pendapatan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($dataAlternatif)): ?>
+                    <tr>
+                        <td colspan="8">Belum ada data alternatif</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach ($dataAlternatif as $i => $alt): ?>
+                        <tr>
+                            <td><?= $i + 1 ?></td>
+                            <td><?= htmlspecialchars($alt['alternatif']) ?></td>
+                            <td><?= htmlspecialchars($alt['jaminan']) ?></td>
+                            <td><?= htmlspecialchars($alt['lama_pinjam']) ?></td>
+                            <td><?= htmlspecialchars($alt['kegunaan']) ?></td>
+                            <td><?= htmlspecialchars($alt['pengeluaran']) ?></td>
+                            <td><?= htmlspecialchars($alt['pendapatan']) ?></td>
+                            <td>
+                                <a href="alternatif.php?edit=<?= $i ?>"><button class="edit">Edit</button></a>
+                                <a href="alternatif.php?delete=<?= $i ?>" onclick="return confirm('Yakin ingin hapus?')"><button class="delete">Hapus</button></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
+
+    <!-- NEXT STEP BUTTON -->
+    <?php if (!empty($dataAlternatif)): ?>
+        <div style="text-align:center;">
+            <a href="matrik_kriteria.php"><button class="next">➡ Lanjut ke Matriks Kriteria</button></a>
+        </div>
+    <?php endif; ?>
+
+    <p style="text-align:center;"><a href="tabel_kriteria.php">⬅ Kembali ke Kriteria</a></p>
 
 </body>
 

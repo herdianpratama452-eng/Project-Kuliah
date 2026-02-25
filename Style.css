@@ -89,23 +89,3 @@ input[type="text"] {
 .sub-container .form-row {
   margin-bottom: 10px;
 }
-@media print {
-  body {
-    /* Memaksa warna latar belakang muncul di Chrome/Safari/Edge */
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    background-color: #0f172a !important; /* Warna Navy Dark Anda */
-  }
-
-  /* Sembunyikan tombol saat mencetak agar laporan terlihat rapi */
-  .flex,
-  button,
-  a {
-    display: none !important;
-  }
-
-  .glass-card {
-    background-color: #1e293b !important;
-    border: 1px solid #334155 !important;
-  }
-}
